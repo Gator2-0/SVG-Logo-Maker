@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 class Square {
   constructor(text, textcolor, shapeColor){
     this.text = text;
@@ -5,11 +7,14 @@ class Square {
     this.shapeColor = shapeColor;
   }
 
-  svg(){
-    return `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  create(){
+    let xml = `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
     <rect width="300" height="200" x="5" style="fill:${this.shapeColor};stroke-width:3;stroke:rgb(0,0,0)" />
     <text x="100" y="110" font-size="50" font-weight="bold" fill="${this.textColor}">${this.text}</text>
-  </svg>`
+    </svg>`
+
+    fs.writeFile('logo.svg',xml, (error)=>error? console.log(error) : console.log('SVG successfully created!!'));
+
   }
   
 }
@@ -20,7 +25,7 @@ class Circle{
     this.shapeColor = shapeColor;
   }
 
-  svg(){
+  create(){
     return `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
     <circle cx="100" cy="100" r="35%" style="fill:${this.shapeColor};stroke-width:3;stroke:rgb(0,0,0)" />
     <text x="50" y="110" font-size="50" font-weight="bold" fill="${this.textColor}">${this.text}</text>
@@ -37,7 +42,7 @@ class Triangle{
     this.shapeColor = shapeColor;
   }
 
-  svg(){
+  create(){
     return `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
     <polygon points="150,10 250,180 50,180" style="fill:${this.shapeColor};stroke-width:3;stroke:rgb(0,0,0)" />
     <text x="100" y="150" font-size="50" font-weight="bold" fill="${this.textColor}">${this.text}</text>

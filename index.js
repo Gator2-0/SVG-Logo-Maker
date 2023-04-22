@@ -1,6 +1,5 @@
 const inquirer = require('inquirer');
 const MaxLengthInputPrompt = require('inquirer-maxlength-input-prompt');
-const fs = require('fs');
 const Shapes = require('./assets/shapes');
 
 
@@ -37,15 +36,15 @@ inquirer
     switch(response.shapes){
       case 'triangle':
         svg = new Shapes.Triangle(response.text,response.textColor,response.shapeColor);
-        fs.writeFile('test.svg',svg.svg(), (error)=>error? console.log(error) : console.log('SVG successfully created!!'));
+        svg.create();
         break;
       case 'circle':    
         svg = new Shapes.Circle(response.text,response.textColor,response.shapeColor);
-        fs.writeFile('test.svg',svg.svg(), (error)=>error? console.log(error) : console.log('SVG successfully created!!'));
+        svg.create();
         break;
       case 'square':
         svg = new Shapes.Square(response.text,response.textColor,response.shapeColor);
-        fs.writeFile('test.svg',svg.svg(), (error)=>error? console.log(error) : console.log('SVG successfully created!!'));
+        svg.create();
         break; 
     }
   }
