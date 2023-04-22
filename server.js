@@ -16,7 +16,7 @@ inquirer
     {
       type: 'input',
       message: 'What color do you want?',
-      name: 'color',
+      name: 'textColor',
     },
     {
       type: 'list',
@@ -43,10 +43,13 @@ inquirer
         shape = 'rect  width="300" height="200"'
         break; 
     }
+    console.log('shape color')
+    console.log(response.shapeColor);
 
     fs.writeFile('test.svg',
     `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-    <${shape} style="fill:${response.color};stroke-width:3;stroke:rgb(0,0,0)" />
+    <${shape} style="fill:${response.shapeColor};stroke-width:3;stroke:rgb(0,0,0)" />
+    <text x="50" y="110" font-size="50" font-weight="bold" fill="${response.textColor}">SVG</text>
   </svg>`,(err) =>
   err ? console.error(err) : console.log('Success!'))
  
