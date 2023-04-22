@@ -3,6 +3,7 @@ const MaxLengthInputPrompt = require('inquirer-maxlength-input-prompt');
 const fs = require('fs');
 const Shapes = require('./assets/shapes');
 
+
 inquirer.registerPrompt('maxlength-input', MaxLengthInputPrompt);
 
 
@@ -32,27 +33,20 @@ inquirer
     },
   ])
   .then((response) =>{
-    let shape;
+    let svg;
     switch(response.shapes){
       case 'triangle':
-        shape = 'polygon points="150,10 250,180 50,180"';
+        svg = new Shapes.Triangle(response.text,response.textColor,response.shapeColor);
+        fs.writeFile('test.svg',svg.svg(), (error)=>error? console.log(error) : console.log('SVG successfully created!!'));
         break;
-      case 'circle':
-        shape = 'circle cx="100" cy="100" r="35%" '
+      case 'circle':    
+        svg = new Shapes.Circle(response.text,response.textColor,response.shapeColor);
+        fs.writeFile('test.svg',svg.svg(), (error)=>error? console.log(error) : console.log('SVG successfully created!!'));
         break;
       case 'square':
-        shape = 'rect  width="300" height="200"'
+        svg = new Shapes.Square(response.text,response.textColor,response.shapeColor);
+        fs.writeFile('test.svg',svg.svg(), (error)=>error? console.log(error) : console.log('SVG successfully created!!'));
         break; 
     }
-    
-
-  //   fs.writeFile('test.svg',
-  //   `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-  //   <${shape} style="fill:${response.shapeColor};stroke-width:3;stroke:rgb(0,0,0)" />
-  //   <text x="50" y="110" font-size="50" font-weight="bold" fill="${response.textColor}">${response.text}</text>
-  // </svg>`,(err) =>
-  // err ? console.error(err) : console.log('Success!'))
- 
   }
-    
-  );
+);
