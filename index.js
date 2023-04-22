@@ -1,15 +1,16 @@
 const inquirer = require('inquirer');
-const MaxLengthInputPrompt = require('inquirer-maxlength-input-prompt')
+const MaxLengthInputPrompt = require('inquirer-maxlength-input-prompt');
 const fs = require('fs');
+const Shapes = require('./assets/shapes');
 
-inquirer.registerPrompt('maxlength-input', MaxLengthInputPrompt)
+inquirer.registerPrompt('maxlength-input', MaxLengthInputPrompt);
 
 
 inquirer
   .prompt([
     {
       type: 'maxlength-input',
-      message: 'What text do you want in your logo (3 letters max)?',
+      message: 'What text do you want in your logo?',
       name: 'text',
       maxLength: 3
     },
@@ -43,15 +44,14 @@ inquirer
         shape = 'rect  width="300" height="200"'
         break; 
     }
-    console.log('shape color')
-    console.log(response.shapeColor);
+    
 
-    fs.writeFile('test.svg',
-    `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-    <${shape} style="fill:${response.shapeColor};stroke-width:3;stroke:rgb(0,0,0)" />
-    <text x="50" y="110" font-size="50" font-weight="bold" fill="${response.textColor}">SVG</text>
-  </svg>`,(err) =>
-  err ? console.error(err) : console.log('Success!'))
+  //   fs.writeFile('test.svg',
+  //   `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  //   <${shape} style="fill:${response.shapeColor};stroke-width:3;stroke:rgb(0,0,0)" />
+  //   <text x="50" y="110" font-size="50" font-weight="bold" fill="${response.textColor}">${response.text}</text>
+  // </svg>`,(err) =>
+  // err ? console.error(err) : console.log('Success!'))
  
   }
     
