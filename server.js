@@ -18,7 +18,7 @@ inquirer
       type: 'list',
       message: 'What shape do you want to use?',
       choices: ['triangle','circle','square'],
-      name: 'confirm',
+      name: 'shapes',
     },
     {
       type: 'input',
@@ -27,10 +27,22 @@ inquirer
     },
   ])
   .then((response) =>{
+    let shape;
+    switch(response.shapes){
+      case 'triangle':
+        shape = '';
+        break;
+      case 'circle':
+        shape = 'circle cx="100" cy="100" r="35%" '
+        break;
+      case 'square':
+        shape = 'rect  width="300" height="200"'
+        break; 
+    }
 
     fs.writeFile('test.svg',
     `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-    <rect width="100" height="100" style="fill:${response.color};stroke-width:3;stroke:rgb(0,0,0)" />
+    <${shape} style="fill:${response.color};stroke-width:3;stroke:rgb(0,0,0)" />
   </svg>`,(err) =>
   err ? console.error(err) : console.log('Success!'))
  
