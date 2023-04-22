@@ -1,4 +1,6 @@
 const inquirer = require('inquirer');
+const fs = require('fs');
+
 
 inquirer
   .prompt([
@@ -24,6 +26,14 @@ inquirer
       name: 'shapeColor',
     },
   ])
-  .then((response) =>
-    console.log('finished')
+  .then((response) =>{
+
+    fs.writeFile('test.svg',
+    `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" style="fill:${response.color};stroke-width:3;stroke:rgb(0,0,0)" />
+  </svg>`,(err) =>
+  err ? console.error(err) : console.log('Success!'))
+ 
+  }
+    
   );
