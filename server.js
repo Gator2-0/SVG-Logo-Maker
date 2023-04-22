@@ -1,13 +1,17 @@
 const inquirer = require('inquirer');
+const MaxLengthInputPrompt = require('inquirer-maxlength-input-prompt')
 const fs = require('fs');
+
+inquirer.registerPrompt('maxlength-input', MaxLengthInputPrompt)
 
 
 inquirer
   .prompt([
     {
-      type: 'input',
+      type: 'maxlength-input',
       message: 'What text do you want in your logo (3 letters max)?',
       name: 'text',
+      maxLength: 3
     },
     {
       type: 'input',
@@ -30,7 +34,7 @@ inquirer
     let shape;
     switch(response.shapes){
       case 'triangle':
-        shape = '';
+        shape = 'polygon points="150,10 250,180 50,180"';
         break;
       case 'circle':
         shape = 'circle cx="100" cy="100" r="35%" '
