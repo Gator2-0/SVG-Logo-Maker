@@ -7,14 +7,17 @@ class Shape {
     this.shapeColor = shapeColor;
     this.shape;
   }
-  create(){
-    let xml = `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+
+  render(){
+    return `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
     <${this.shape} style="fill:${this.shapeColor};stroke-width:3;stroke:rgb(0,0,0)" />
     <text x="100" y="110" font-size="50" font-weight="bold" fill="${this.textColor}">${this.text}</text>
     </svg>`
+  }
+  create(xml){
     console.log(`SVG created with info:\ntext:${this.text}\ntext color:${this.textColor}\nshape color:${this.shapeColor}`)
 
-    fs.writeFile('logo.svg',xml, (error)=>error? console.log(error) : console.log('SVG successfully created!!'));
+    fs.writeFile('logo.svg',xml, (error)=>error? console.log(error) : console.log('SVG saved in location ./logo.svg!!'));
   }
 }
 
@@ -25,14 +28,14 @@ class Square extends Shape {
   }
 }
 
-class Circle{
+class Circle extends Shape{
   constructor(text, textColor, shapeColor){
     super(text, textColor, shapeColor)
-    this.shape = 'circle cx="100" cy="100" r="35%"';
+    this.shape = 'circle cx="60" cy="100" r="35%"';
   }
 }
 
-class Triangle{
+class Triangle extends Shape{
   constructor(text, textColor, shapeColor){
     super(text, textColor, shapeColor)
     this.shape = 'polygon points="150,10 250,180 50,180"';

@@ -36,15 +36,15 @@ inquirer
     switch(response.shapes){
       case 'triangle':
         svg = new Shapes.Triangle(response.text,response.textColor,response.shapeColor);
-        svg.create();
+        svg.create(svg.render());
         break;
       case 'circle':    
         svg = new Shapes.Circle(response.text,response.textColor,response.shapeColor);
-        svg.create();
+        svg.create(svg.render());
         break;
       case 'square':
         svg = new Shapes.Square(response.text,response.textColor,response.shapeColor);
-        svg.create();
+        svg.create(svg.render());
         break; 
     }
   }
