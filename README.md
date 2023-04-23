@@ -33,6 +33,9 @@ Follow the prompt to create your very own SVG Logo
 
 ![User Input](./assets/images/user%20input.png)
 
+To see a video of the app running as well as the test, follow the link below.
+https://drive.google.com/file/d/1CcB6yzghHFZs_-dZX5KDPBCKlflABTW_/view
+
 ## Tests
 
 This app feature a Jest test.
